@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Cádiz</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/list/servicios">Servicios</ion-button>
+      <ion-button routerLink="/list/restaurantes">Restaurantes</ion-button>
+      <ion-button routerLink="/list/hoteles">Hoteles</ion-button>
+      <ion-button routerLink="/list/clinicas">Clínicas</ion-button>
+      <ion-button routerLink="/list/perfil" color="tertiary">Perfil</ion-button>
+      <ion-button routerLink="/list/datos"  color="medium">Datos</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+  <!-- 👇 Outlet debe quedar solo dentro del content -->
+  <ion-router-outlet></ion-router-outlet>
+
+
+
+</ion-content>
+
+  <ion-footer>
+  <ion-toolbar>
+    <div class="controls-row">
+      <ion-button size="small" (click)="incrementFromParent()">Incrementar</ion-button>
+      <span *ngIf="milestoneMsg">{{ milestoneMsg }}</span>
+    </div>
+    <app-counter [count]="parentCount" (milestone)="onMilestoneReached($event)"></app-counter>
+  </ion-toolbar>
+</ion-footer>
+
