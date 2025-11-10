@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Datos del Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-card *ngIf="cliente; else noDatos">
+    <ion-card-header>
+      <ion-card-title>Información Guardada</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Nombre completo:</strong> {{ cliente.nombre }} {{ cliente.apellido }}</p>
+      <p><strong>Email:</strong> {{ cliente.email }}</p>
+      <p><strong>Nacionalidad:</strong> {{ cliente.nacionalidad }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-template #noDatos>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Sin datos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>No se encontraron datos de cliente guardados.</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+</ion-content>

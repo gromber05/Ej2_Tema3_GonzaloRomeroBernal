@@ -19,6 +19,14 @@ export const routes: Routes = [
     ]
   },
 
-  { path: '**', redirectTo: 'list/servicios' }
+  { path: '**', redirectTo: 'list/servicios' },
+  {
+    path: 'cliente',
+    loadComponent: () => import('./cliente/cliente.page').then( m => m.ClientePage)
+  },
+  {
+    path: 'datos-cliente',
+    loadComponent: () => import('./datos-cliente/datos-cliente.page').then( m => m.DatosClientePage)
+  }
 ];
 

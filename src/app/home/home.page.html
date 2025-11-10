@@ -16,7 +16,11 @@
 
 
   <!-- 👇 Outlet debe quedar solo dentro del content -->
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet>
+
+    
+    
+  </ion-router-outlet>
 
 
 
@@ -30,5 +34,36 @@
     </div>
     <app-counter [count]="parentCount" (milestone)="onMilestoneReached($event)"></app-counter>
   </ion-toolbar>
+  <!-- Calculator controls: two inputs in parent + button to send values to child -->
+  <ion-toolbar>
+    <div class="ion-padding controls-row" style="align-items:center; gap:0.5rem; flex-wrap:wrap;">
+      <ion-item lines="none" style="min-width:120px;">
+        <ion-label position="stacked">Valor A</ion-label>
+        <ion-input type="number" [(ngModel)]="num1"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" style="min-width:120px;">
+        <ion-label position="stacked">Valor B</ion-label>
+        <ion-input type="number" [(ngModel)]="num2"></ion-input>
+      </ion-item>
+
+      <ion-button (click)="calcular()" color="primary">Calcular</ion-button>
+
+      <!-- Display results returned by the child next to the button -->
+      <div *ngIf="resultados" style="margin-left:0.5rem; font-size:0.9rem;">
+        <div><strong>Suma:</strong> {{ resultados.suma }}</div>
+        <div><strong>Resta:</strong> {{ resultados.resta }}</div>
+        <div><strong>Mult.:</strong> {{ resultados.multiplicacion }}</div>
+        <div><strong>Div.:</strong> {{ resultados.division === (resultados.division) ? (resultados.division | number:'1.2-6') : '—' }}</div>
+      </div>
+    </div>
+  </ion-toolbar>
+
+  <!-- Logical calculator child: receives the two values via inputs and emits results -->
+  <app-calculadora
+    [valor1]="valorAEnviar"
+    [valor2]="valorBEnviar"
+    (resultadosCalculados)="mostrarResultados($event)"
+  ></app-calculadora>
 </ion-footer>
 

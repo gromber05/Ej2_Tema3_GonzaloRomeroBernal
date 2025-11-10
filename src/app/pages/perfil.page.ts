@@ -7,6 +7,7 @@ import {
 } from '@ionic/angular/standalone';
 import { LocalStorageService } from '../core/local-storage.service';
 import { UserStateService } from '../core/user-state.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { UserStateService } from '../core/user-state.service';
 export class PerfilPage {
   private storage = inject(LocalStorageService);
   private userState = inject(UserStateService);
+  private router = inject(Router);
 
   // Estado visual del botón
   feedbackActive = false;
@@ -49,6 +51,16 @@ export class PerfilPage {
       email: this.model.email,
       password: this.model.password
     });
+
+    // Persistir también los campos "extra" en localStorage para sobrevivir recargas
+    this.storage.set('domicilio', this.model.domicilio || '');
+    this.storage.set('edad', this.model.edad != null ? String(this.model.edad) : '');
+    this.storage.set('curso', this.model.curso || '');
+    this.storage.set('email', this.model.email || '');
+    this.storage.set('password', this.model.password || '');
+
+    // Navegar a la vista Datos para mostrar la información guardada
+    this.router.navigateByUrl('/list/datos');
 
     // 🔔 Feedback visual temporal del botón
     this.feedbackActive = true;

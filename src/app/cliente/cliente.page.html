@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Formulario Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="clienteForm" (ngSubmit)="guardar()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      
+      <ion-item>
+        <ion-input label="Nombre" type="text" formControlName="nombre" placeholder="Tu nombre"></ion-input>
+        <ion-note slot="error" *ngIf="c['nombre'].touched && c['nombre'].hasError('required')">
+          El nombre es requerido. [cite: 29]
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Apellido" type="text" formControlName="apellido" placeholder="Tu apellido"></ion-input>
+        <ion-note slot="error" *ngIf="c['apellido'].touched && c['apellido'].hasError('required')">
+          El apellido es requerido. [cite: 29]
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Email" type="email" formControlName="email" placeholder="email@ejemplo.com"></ion-input>
+        <ion-note slot="error" *ngIf="c['email'].touched && c['email'].hasError('required')">
+          El email es requerido. [cite: 29]
+        </ion-note>
+        <ion-note slot="error" *ngIf="c['email'].touched && c['email'].hasError('email')">
+          Formato de email inválido. [cite: 29]
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Nacionalidad" type="text" formControlName="nacionalidad" placeholder="Tu nacionalidad"></ion-input>
+        <ion-note slot="error" *ngIf="c['nacionalidad'].touched && c['nacionalidad'].hasError('required')">
+          La nacionalidad es requerida. [cite: 29]
+        </ion-note>
+      </ion-item>
+
+    </ion-list>
+    
+    <ion-button expand="full" type="submit" [disabled]="clienteForm.invalid" class="ion-padding">
+      Guardar
+    </ion-button>
+  </form>
+</ion-content>
